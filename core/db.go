@@ -9,7 +9,8 @@ import (
 
 func InitDB() *gorm.DB {
 	// Configura tu conexión a MySQL (reemplaza con tus credenciales)
-	dsn := "root:root@tcp(127.0.0.1:3306)/prueba?charset=utf8mb4&parseTime=True&loc=Local&multiStatements=true"
+    // URL de conexión usando variables de entorno
+    dsn := "root:root@tcp(mysql:3306)/prueba?charset=utf8mb4&parseTime=True&loc=Local&multiStatements=true"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal("Failed to connect to database:", err)
