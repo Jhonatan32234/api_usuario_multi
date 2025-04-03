@@ -10,7 +10,7 @@ import (
 func InitDB() *gorm.DB {
 	// Configura tu conexión a MySQL (reemplaza con tus credenciales)
     // URL de conexión usando variables de entorno
-    dsn := "root:root@tcp(mysql:3306)/prueba?charset=utf8mb4&parseTime=True&loc=Local&multiStatements=true"
+    dsn := "root:root@tcp(localhost:3306)/prueba?charset=utf8mb4&parseTime=True&loc=Local&multiStatements=true"
 	db, err := gorm.Open(mysql.Open(dsn), &gorm.Config{})
 	if err != nil {
 		log.Fatal("Failed to connect to database:", err)
@@ -21,7 +21,8 @@ func InitDB() *gorm.DB {
 		CREATE TABLE IF NOT EXISTS users (
 			id INT AUTO_INCREMENT PRIMARY KEY,
 			username VARCHAR(100) UNIQUE NOT NULL,
-			password VARCHAR(255) NOT NULL
+			password VARCHAR(255) NOT NULL,
+			tipo VARCHAR(20) DEFAULT 'user'
 		);
 	`).Error
 	if err != nil {
